@@ -1,8 +1,8 @@
 # Cat Herder
 
-## Description
+I'll write more here later, honest.
 
-Write this later, honest
+Play it at <https://catherder.netlify.app/>
 
 ## Notes
 
