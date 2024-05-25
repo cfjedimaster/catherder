@@ -8,7 +8,7 @@ let NEEDS = [
 	{ display: 'petting', action:'pet' }
 ];
 
-let ACTIVITIES = ['chasing a laser dot', 'sleeping', 'chasing sunbeams'];
+let ACTIVITIES = ['chasing a laser dot', 'sleeping', 'chasing sunbeams', 'laying in the sun', 'sitting in a box', 'stalking a bug'];
 
 // Range of how many seconds until next mood change
 let CAT_MOOD_MIN = 1;
