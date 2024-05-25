@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>IdleFleet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+<h2>Cat Herder</h2>
+
+<div x-data="app" x-cloak>
+
+	<p>
+	Total Purrs: <span x-text="purrs"></span>
+	</p>
+
+	<div class="catHerd">
+		<template x-for="cat in cats">
+		<div class="cat">
+			<span x-text="cat.name"></span>
+		</div>
+		</template>
+	</div>
+
+	<!-- cheat area -->
+	<p x-show="cheatsEnabled">
+	<button @click="addCat" title="Add Cat">😻😻😻</button>
+	</p>
+
+	<footer>
+	<p>
+	Created by <a href="https://www.raymondcamden.com" target="_new">Raymond Camden</a> - <a href="https://github.com/cfjedimaster/catherder" target="_new">github repo</a>
+	</p>
+	</footer>
+
+</div>
+
+<script src="/js/app.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</body>
+</html>

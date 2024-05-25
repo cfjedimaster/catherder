@@ -1,0 +1,34 @@
+[x-cloak] {display: none}
+
+body {
+  font-family: Arial;  
+}
+
+@media all and  (min-height: 600px) {
+  footer {
+    position: absolute;
+    bottom: 0;
+  }
+}
+@media not all and  (min-height: 600px) {
+  footer {
+    margin-top: 40px;
+  }
+}
+
+footer a {
+  color: rgb(175, 21, 155);
+}
+
+.catHerd {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.cat {
+	border-style:solid; 
+	border-width:thin;
+	width: 250px;
+	padding: 10px;
+}
