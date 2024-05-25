@@ -4,6 +4,8 @@ body {
   font-family: Arial;  
 }
 
+/*
+to do, fix footer
 @media all and  (min-height: 600px) {
   footer {
     position: absolute;
@@ -15,7 +17,7 @@ body {
     margin-top: 40px;
   }
 }
-
+*/
 footer a {
   color: rgb(175, 21, 155);
 }
@@ -27,8 +29,4 @@ footer a {
 }
 
 .cat {
-	border-style:solid; 
-	border-width:thin;
-	width: 250px;
-	padding: 10px;
 }

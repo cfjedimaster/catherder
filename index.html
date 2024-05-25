@@ -2,6 +2,17 @@
 <head>
 	<title>IdleFleet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link
+	rel="stylesheet"
+	media="(prefers-color-scheme:light)"
+	href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css"
+	/>
+	<link
+	rel="stylesheet"
+	media="(prefers-color-scheme:dark)"
+	href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/dark.css"
+	onload="document.documentElement.classList.add('sl-theme-dark');"
+	/>
 	<link rel="stylesheet" href="/css/app.css">
 </head>
 
@@ -16,14 +27,27 @@
 
 	<div class="catHerd">
 		<template x-for="cat in cats">
-		<div class="cat">
-			<span x-text="cat.name"></span>
-		</div>
+		<sl-card class="cat">
+			<div slot="header" x-text="cat.name"></div>
+			<p>
+				<span x-show="cat.gender === 'male'" x-text="'He'"></span>
+				<span x-show="cat.gender === 'female'" x-text="'She'"></span>
+				is <span x-text="cat.activity"></span> and wants <span x-text="cat.need.display"></span>.
+			</p>
+			H: <span x-text="cat.happiness"></span>
+			<div slot="footer">
+				<sl-button-group>
+					<sl-button variant="success" @click="doIt('ignore',cat)">Ignore</sl-button>
+					<sl-button variant="success" @click="doIt('feed',cat)">Feed</sl-button>
+					<sl-button variant="success" @click="doIt('pet',cat)">Pet</sl-button>
+				</sl-button-group>
+			</div>
+		</sl-card>
 		</template>
 	</div>
 
 	<!-- cheat area -->
-	<p x-show="cheatsEnabled">
+	<p x-show="cheatsEnabled" style="margin-top:50px">
 	<button @click="addCat" title="Add Cat">😻😻😻</button>
 	</p>
 
@@ -35,6 +59,7 @@
 
 </div>
 
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace-autoloader.js"></script>
 <script src="/js/app.js" type="module"></script>
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </body>
