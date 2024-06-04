@@ -30,3 +30,12 @@ footer a {
 
 .cat {
 }
+
+.machine-card {
+  max-width: 300px;
+  margin-right: 15px;
+}
+
+div.machine-row {
+  margin-bottom: 50px;
+}

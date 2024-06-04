@@ -22,8 +22,55 @@
 <div x-data="app" x-cloak>
 
 	<p>
-	Total Purrs: <span x-text="purrs"></span>
+	Total Purrs: <span x-text="purrs"></span> / Total Cats: <span x-text="cats.length"></span>
 	</p>
+
+	<template x-if="machinesAllowed">
+		<div class="machine-row">
+		<sl-details summary="Feline Automation Control Panel">
+
+			<sl-card class="machine-card">
+				<img slot="image" src="img/boxes.jpg">
+				<p>
+				Boxes give cats quality alone time and address their need to be left alone.
+				</p>
+				<p>
+				Total Boxes: <span x-text="boxes"></span>
+				</p>
+				<p>
+				<sl-button @click="buyBox" :disabled="!canBuyBox">Buy Box</sl-button>
+				</p>
+			</sl-card>
+
+			<sl-card class="machine-card">
+				<img slot="image" src="img/catfood.jpg">
+				<p>
+				Cat feeders provide food to your felines on an automated schedule. The schedule is always. 
+				</p>
+				<p>
+				Total Feeders: <span x-text="feeders"></span>
+				</p>
+				<p>
+				<sl-button @click="buyFeeder" :disabled="!canBuyFeeder">Buy Feeder</sl-button>
+				</p>
+			</sl-card>
+
+			<sl-card class="machine-card">
+				<img slot="image" src="img/petter.jpg">
+				<p>
+				Automatic petting devices will scratch/rub/cuddle your cats on demand. 
+				</p>
+				<p>
+				Total Petters: <span x-text="petters"></span>
+				</p>
+				<p>
+				<sl-button @click="buyPetter" :disabled="!canBuyPetter">Buy Petter</sl-button>
+				</p>
+			</sl-card>
+		</sl-details>
+		</div>
+	</template>
+
 
 	<div class="catHerd">
 		<template x-for="cat in cats">
@@ -49,6 +96,7 @@
 	<!-- cheat area -->
 	<p x-show="cheatsEnabled" style="margin-top:50px">
 	<button @click="addCat" title="Add Cat">😻😻😻</button>
+	<button @click="purrs += 100" title="Add Purrs">😽😽😽</button>
 	</p>
 
 	<footer>

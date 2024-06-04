@@ -11,16 +11,28 @@ let NEEDS = [
 let ACTIVITIES = ['chasing a laser dot', 'sleeping', 'chasing sunbeams', 'laying in the sun', 'sitting in a box', 'stalking a bug'];
 
 // Range of how many seconds until next mood change
-let CAT_MOOD_MIN = 1;
-let CAT_MOOD_MAX = 8;
+let CAT_MOOD_MIN = 5;
+let CAT_MOOD_MAX = 15;
 
 // Threshold where you get a chance for a purr
 let PURR_THRESHOLD = 10;
 
+// Threshold for when you can buy machines
+let MACHINE_THRESHOLD = 100;
+
+// price for machines
+let BOX_COST = 100;
+let FEEDER_COST = 100;
+let PETTER_COST = 100;
+
 document.addEventListener('alpine:init', () => {
   Alpine.data('app', () => ({
+	boxes:0, 
 	cats:[],
 	cheatsEnabled:false,
+	feeders:0, 
+	machinesEnabled:false,
+	petters:0, 
 	purrs:0,
     async init() {
 		this.addCat();
@@ -74,6 +86,28 @@ document.addEventListener('alpine:init', () => {
 
 		this.cats.push(cat);
 	},
+
+	buyBox() {
+		if(this.canBuyBox) {
+			this.boxes++;
+			this.purrs -= BOX_COST;
+		}
+	},
+
+	buyFeeder() {
+		if(this.canBuyFeeder) {
+			this.feeders++;
+			this.purrs -= FEEDER_COST;
+		}
+	},
+
+	buyPetter() {
+		if(this.canBuyPetter) {
+			this.petters++;
+			this.purrs -= PETTER_COST;
+		}
+	},
+
 	doIt(action, cat) {
 		console.log(`Player wants to ${action} to ${cat.name}`);
 		if(cat.need.action === action) {
@@ -85,6 +119,28 @@ document.addEventListener('alpine:init', () => {
 		}
 
 	},
+
+	// getters, duh
+	get canBuyBox() {
+		return this.purrs >= BOX_COST;
+	},
+
+	get canBuyFeeder() {
+		return this.purrs >= FEEDER_COST;
+	},
+
+	get canBuyPetter() {
+		return this.purrs >= PETTER_COST;
+	},
+
+	get machinesAllowed() {
+		if(this.purrs > MACHINE_THRESHOLD) {
+			this.machinesEnabled = true;
+		}
+
+		return this.machinesEnabled;
+	},
+
     get cheatsEnabled() {
       let p = new URLSearchParams(window.location.search);
       return p.has('xyzzy');
