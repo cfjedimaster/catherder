@@ -18,12 +18,7 @@ let CAT_MOOD_MAX = 15;
 let PURR_THRESHOLD = 10;
 
 // Threshold for when you can buy machines
-let MACHINE_THRESHOLD = 100;
-
-// price for machines
-let BOX_COST = 100;
-let FEEDER_COST = 100;
-let PETTER_COST = 100;
+let MACHINE_THRESHOLD = 70;
 
 document.addEventListener('alpine:init', () => {
   Alpine.data('app', () => ({
@@ -43,7 +38,9 @@ document.addEventListener('alpine:init', () => {
 		/*
 		For each cat, see if it's time for a mood change, and if so, change it
 		*/
-		for(let cat of this.cats) {
+		for(let i=0; i<this.cats.length;i++) {
+
+			let cat = this.cats[i];
 
 			// do we purr?
 			if(cat.happiness > PURR_THRESHOLD) {
@@ -51,6 +48,11 @@ document.addEventListener('alpine:init', () => {
 				// need to think about the chance, for now, lets just purr
 				this.purrs++;
 			}
+
+			// does a machine help us?
+			if(cat.need.action === 'ignore' && this.boxes >= (i+1)) cat.happiness++;
+			if(cat.need.action === 'feed' && this.feeders >= (i+1)) cat.happiness++;
+			if(cat.need.action === 'pet' && this.pet >= (i+1)) cat.happiness++;
 
 			// do we change mood?
 			if(new Date() > cat.moodChangeTime) {
@@ -90,21 +92,21 @@ document.addEventListener('alpine:init', () => {
 	buyBox() {
 		if(this.canBuyBox) {
 			this.boxes++;
-			this.purrs -= BOX_COST;
+			this.purrs -= this.machineCost;
 		}
 	},
 
 	buyFeeder() {
 		if(this.canBuyFeeder) {
 			this.feeders++;
-			this.purrs -= FEEDER_COST;
+			this.purrs -= this.machineCost;
 		}
 	},
 
 	buyPetter() {
 		if(this.canBuyPetter) {
 			this.petters++;
-			this.purrs -= PETTER_COST;
+			this.purrs -= this.machineCost;
 		}
 	},
 
@@ -122,15 +124,19 @@ document.addEventListener('alpine:init', () => {
 
 	// getters, duh
 	get canBuyBox() {
-		return this.purrs >= BOX_COST;
+		return this.purrs >= this.machineCost;
 	},
 
 	get canBuyFeeder() {
-		return this.purrs >= FEEDER_COST;
+		return this.purrs >= this.machineCost;
 	},
 
 	get canBuyPetter() {
-		return this.purrs >= PETTER_COST;
+		return this.purrs >= this.machineCost;
+	},
+
+	get machineCost() {
+		return 100 + ((this.boxes + this.petters + this.feeders) * 10);
 	},
 
 	get machinesAllowed() {
@@ -140,6 +146,7 @@ document.addEventListener('alpine:init', () => {
 
 		return this.machinesEnabled;
 	},
+
 
     get cheatsEnabled() {
       let p = new URLSearchParams(window.location.search);

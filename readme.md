@@ -1,6 +1,6 @@
 # Cat Herder
 
-I'll write more here later, honest.
+Cat Herder is an "idle clicker" game where you as the lucky cat parent get to try your best to keep your fur babies happy. Each cat has three basic needs - to be fed, petted, or ignored, and you have to do your best to meet those needs! Good luck!
 
 Play it at <https://catherder.netlify.app/>
 
@@ -25,6 +25,8 @@ landscape, art, style: themes/cartoon
 
 
 ## Changelog
+
+* 6/5/2024: Machines now add to happiness for each cat up to the # of machines. So X feeders will feed the first X cats. Also reduced the amount of purrs needed to enable machines. Also simplified machine cost. I still have methods for each 3 types and I could reduce that, but keeping them in case I reverse the decision. 
 
 * 6/4/2024: Added flag for when machines are enabled. Added machine display and ability to purchase. Machines don't do anything yet. Oh, added money cheat to the cheats. 
 
