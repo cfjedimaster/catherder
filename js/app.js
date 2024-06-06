@@ -11,8 +11,8 @@ let NEEDS = [
 let ACTIVITIES = ['chasing a laser dot', 'sleeping', 'chasing sunbeams', 'laying in the sun', 'sitting in a box', 'stalking a bug'];
 
 // Range of how many seconds until next mood change
-let CAT_MOOD_MIN = 5;
-let CAT_MOOD_MAX = 15;
+let CAT_MOOD_MIN = 10;
+let CAT_MOOD_MAX = 30;
 
 // Threshold where you get a chance for a purr
 let PURR_THRESHOLD = 10;
@@ -52,7 +52,7 @@ document.addEventListener('alpine:init', () => {
 			// does a machine help us?
 			if(cat.need.action === 'ignore' && this.boxes >= (i+1)) cat.happiness++;
 			if(cat.need.action === 'feed' && this.feeders >= (i+1)) cat.happiness++;
-			if(cat.need.action === 'pet' && this.pet >= (i+1)) cat.happiness++;
+			if(cat.need.action === 'pet' && this.petters >= (i+1)) cat.happiness++;
 
 			// do we change mood?
 			if(new Date() > cat.moodChangeTime) {

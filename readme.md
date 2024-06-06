@@ -26,6 +26,8 @@ landscape, art, style: themes/cartoon
 
 ## Changelog
 
+* 6/6/2024: Fixed bug with pet machine, increased time for moods.
+
 * 6/5/2024: Machines now add to happiness for each cat up to the # of machines. So X feeders will feed the first X cats. Also reduced the amount of purrs needed to enable machines. Also simplified machine cost. I still have methods for each 3 types and I could reduce that, but keeping them in case I reverse the decision. Added version # to title screen.
 
 * 6/4/2024: Added flag for when machines are enabled. Added machine display and ability to purchase. Machines don't do anything yet. Oh, added money cheat to the cheats. 
