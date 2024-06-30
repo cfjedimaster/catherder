@@ -1,4 +1,4 @@
-let CAT_PREFIX = ['Lord','Lady','Mr','King','Queen','Empress','Emperor','Strange','Delerious'];
+let CAT_PREFIX = ['Lord','Lady','Mr','King','Queen','Empress','Emperor','Strange','Delerious','Fluffy'];
 let CAT_NAME = ['Fluffy','Pig','Elise','Luna','Grace','Zelda','Sintra','Elvis','Crackers','Smelly Cat','Toebeans','Bob','Mary','Sammy']
 
 // Needs are a collection of strings related to display and user action
@@ -46,7 +46,7 @@ document.addEventListener('alpine:init', () => {
 			if(cat.happiness > PURR_THRESHOLD) {
 				console.log('chance to purr');
 				// need to think about the chance, for now, lets just purr
-				this.purrs++;
+				this.purrs += Math.floor(cat.happiness / PURR_THRESHOLD);
 			}
 
 			// does a machine help us?
@@ -69,10 +69,15 @@ document.addEventListener('alpine:init', () => {
 				cat.happiness = 0;
 
 			}
+
+			if(this.nextCatCost <= this.purrs) {
+				console.log('add cat based on purrs');
+				this.addCat();
+			}
 		}
     },
 
-	addCat() {
+	addCat(notify=true) {
 		let cat = {};
 		cat.gender = Math.random() < 0.5 ? 'male':'female';
 		cat.name = getRandomArrayEl(CAT_PREFIX) + ' ' + getRandomArrayEl(CAT_NAME);
@@ -133,6 +138,13 @@ document.addEventListener('alpine:init', () => {
 
 	get canBuyPetter() {
 		return this.purrs >= this.machineCost;
+	},
+
+	get nextCatCost() {
+		// https://gamedev.stackexchange.com/a/13639
+		// reverse is: XP = level squared / constanst
+		// constant from that same comment, 0.04
+		return (this.cats.length + 1) ** 2 / 0.04;
 	},
 
 	get machineCost() {

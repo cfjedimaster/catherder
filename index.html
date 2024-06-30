@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<h2>Cat Herder v0.3</h2>
+<h2>Cat Herder v0.9</h2>
 
 <div x-data="app" x-cloak>
 
@@ -97,7 +97,7 @@
 	<p x-show="cheatsEnabled" style="margin-top:50px">
 	<button @click="addCat" title="Add Cat">😻😻😻</button>
 	<button @click="purrs += 100" title="Add Purrs">😽😽😽</button>
-	Machine cost: <span x-text="machineCost"></span>
+	Machine cost: <span x-text="machineCost"></span> cat cost - <span x-text="nextCatCost"></span>
 	</p>
 
 	<footer>
