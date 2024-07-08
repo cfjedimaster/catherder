@@ -76,11 +76,13 @@ document.addEventListener('alpine:init', () => {
 
 			}
 
-			if(this.nextCatCost <= this.purrs) {
-				console.log('add cat based on purrs');
-				this.addCat();
-			}
 		}
+
+		if(this.nextCatCost <= this.purrs) {
+			console.log('add cat based on purrs');
+			this.addCat();
+		}
+
     },
 
 	addCat(notify=true) {
@@ -162,7 +164,7 @@ document.addEventListener('alpine:init', () => {
 
 	get nextCatCost() {
 		// https://gamedev.stackexchange.com/a/13639
-		// reverse is: XP = level squared / constanst
+		// reverse is: XP = level squared / constant
 		// constant from that same comment, 0.04
 		return (this.cats.length + 1) ** 2 / 0.04;
 	},
