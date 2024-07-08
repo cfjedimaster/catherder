@@ -1,6 +1,12 @@
 let CAT_PREFIX = ['Lord','Lady','Mr','King','Queen','Empress','Emperor','Strange','Delerious','Fluffy'];
 let CAT_NAME = ['Fluffy','Pig','Elise','Luna','Grace','Zelda','Sintra','Elvis','Crackers','Smelly Cat','Toebeans','Bob','Mary','Sammy']
 
+let VERY_UNHAPPY = ['$name is growling very angrily.', '$name hisses at you in utter contempt.'];
+let UNHAPPY = ['$name is scowling at you.', '$name hisses at you.'];
+let NEUTRAL = ['$name looks bored.', '$name yawns.', '$name twiddles their toebeans.'];
+let HAPPY = ['$name is purring', '$name stretches out their arms.', '$name arches their back up.'];
+let VERY_HAPPY = ['$name is purring contentedly.', '$name rolls around in pure joy.'];
+
 // Needs are a collection of strings related to display and user action
 let NEEDS = [
 	{ display:'to be left alone', action:'ignore' },
@@ -126,7 +132,21 @@ document.addEventListener('alpine:init', () => {
 		}
 
 	},
-
+	happyLabel(h,name) {
+		/*
+		we have 5 types of labels for cats:
+		very unhappy
+		unhappy
+		neutral
+		happy
+		very happy
+		*/
+		if(h < -20) return getRandomArrayEl(VERY_UNHAPPY).replace('$name', name);
+		if(h < 0) return getRandomArrayEl(UNHAPPY).replace('$name', name);
+		if(h === 0) return getRandomArrayEl(NEUTRAL).replace('$name', name);
+		if(h < 20) return getRandomArrayEl(HAPPY).replace('$name', name);
+		return getRandomArrayEl(VERY_HAPPY).replace('$name', name);
+	},
 	// getters, duh
 	get canBuyBox() {
 		return this.purrs >= this.machineCost;

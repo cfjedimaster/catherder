@@ -38,6 +38,8 @@ landscape, art, style: themes/cartoon
 
 ## Changelog
 
+* 7/8/2024: V1 release! Happiness now is hidden behind strings. 
+
 * 6/30/2024: Support adding cats based on purrs. You can now get more purrs the more happy the cat is. Added some documentation here on how things work, potential spoilers though.
 
 * 6/6/2024: Fixed bug with pet machine, increased time for moods.

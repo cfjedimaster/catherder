@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<h2>Cat Herder v0.9</h2>
+<h2>Cat Herder v1</h2>
 
 <div x-data="app" x-cloak>
 
@@ -81,7 +81,7 @@
 				<span x-show="cat.gender === 'female'" x-text="'She'"></span>
 				is <span x-text="cat.activity"></span> and wants <span x-text="cat.need.display"></span>.
 			</p>
-			H: <span x-text="cat.happiness"></span>
+			<span x-text="happyLabel(cat.happiness,cat.name)"></span>
 			<div slot="footer">
 				<sl-button-group>
 					<sl-button variant="success" @click="doIt('ignore',cat)">Ignore</sl-button>
